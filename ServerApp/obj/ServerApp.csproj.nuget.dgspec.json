@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projects\\TODO\\TO-DO\\ServerApp\\ServerApp.csproj": {}
+    "d:\\Projects\\TODO\\TO-DO\\ServerApp\\ServerApp.csproj": {}
   },
   "projects": {
-    "D:\\Projects\\TODO\\TO-DO\\ServerApp\\ServerApp.csproj": {
+    "d:\\Projects\\TODO\\TO-DO\\ServerApp\\ServerApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\TODO\\TO-DO\\ServerApp\\ServerApp.csproj",
+        "projectUniqueName": "d:\\Projects\\TODO\\TO-DO\\ServerApp\\ServerApp.csproj",
         "projectName": "ServerApp",
-        "projectPath": "D:\\Projects\\TODO\\TO-DO\\ServerApp\\ServerApp.csproj",
+        "projectPath": "d:\\Projects\\TODO\\TO-DO\\ServerApp\\ServerApp.csproj",
         "packagesPath": "C:\\Users\\gisam\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\TODO\\TO-DO\\ServerApp\\obj\\",
+        "outputPath": "d:\\Projects\\TODO\\TO-DO\\ServerApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\gisam\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -37,6 +37,16 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerUI": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
