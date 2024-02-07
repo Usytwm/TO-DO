@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using ServerApp.Models;
+using ServerApp.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = new ConfigurationBuilder()
@@ -20,6 +22,9 @@ builder.Services.AddSwaggerGen(c =>
     {
         c.SwaggerDoc("v1", new OpenApiInfo { Title = "My To-Do", Version = "v1" });
     });
+
+
+builder.Services.AddScoped<IEntityService<TaskModel>, EntityService>();
 
 var app = builder.Build();
 app.UseSwagger();
