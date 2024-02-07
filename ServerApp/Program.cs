@@ -9,21 +9,22 @@ var config = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
     .Build();
 
+// Configure database context
 builder.Services.AddDbContext<MyDbContext>(options =>
-    {
-        options.UseMySql(config.GetConnectionString("MySqlConnection"),
-            ServerVersion.AutoDetect(config.GetConnectionString("MySqlConnection")));
-    });
+{
+    options.UseMySql(config.GetConnectionString("MySqlConnection"),
+        ServerVersion.AutoDetect(config.GetConnectionString("MySqlConnection")));
+});
 
-// Agregar servicios al contenedor.
+// Add services to the container
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
-    {
-        c.SwaggerDoc("v1", new OpenApiInfo { Title = "My To-Do", Version = "v1" });
-    });
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "My To-Do", Version = "v1" });
+});
 
-
+// Register EntityService for TaskModel entities
 builder.Services.AddScoped<IEntityService<TaskModel>, EntityService>();
 
 var app = builder.Build();
@@ -33,7 +34,7 @@ app.UseSwaggerUI(c =>
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
 });
 
-// Configure the HTTP request pipeline.
+// Configure the HTTP request pipeline
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");

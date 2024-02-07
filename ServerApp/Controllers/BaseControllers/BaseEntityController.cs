@@ -6,15 +6,27 @@ using System.Threading.Tasks;
 
 namespace ServerApp.Controllers
 {
+    /// <summary>
+    /// Base controller for handling common CRUD operations on entities.
+    /// </summary>
+    /// <typeparam name="T">The type of entity.</typeparam>
     public abstract class BaseEntityController<T> : ControllerBase where T : class, IEntity
     {
         protected readonly IEntityService<T> _entityService;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BaseEntityController{T}"/> class with the specified entity service.
+        /// </summary>
+        /// <param name="entityService">The entity service.</param>
         protected BaseEntityController(IEntityService<T> entityService)
         {
-            _entityService = entityService;
+            _entityService = entityService ?? throw new ArgumentNullException(nameof(entityService));
         }
 
+        /// <summary>
+        /// Retrieves all entities.
+        /// </summary>
+        /// <returns>A collection of entities.</returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<T>>> GetAll()
         {
@@ -30,6 +42,11 @@ namespace ServerApp.Controllers
             }
         }
 
+        /// <summary>
+        /// Retrieves an entity by its identifier.
+        /// </summary>
+        /// <param name="id">The identifier of the entity to retrieve.</param>
+        /// <returns>The retrieved entity.</returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<T>> GetById(Guid id)
         {
@@ -50,6 +67,11 @@ namespace ServerApp.Controllers
             }
         }
 
+        /// <summary>
+        /// Creates a new entity.
+        /// </summary>
+        /// <param name="entity">The entity to create.</param>
+        /// <returns>The created entity.</returns>
         [HttpPost]
         public async Task<ActionResult<T>> Create(T entity)
         {
@@ -65,6 +87,12 @@ namespace ServerApp.Controllers
             }
         }
 
+        /// <summary>
+        /// Updates an entity by its identifier.
+        /// </summary>
+        /// <param name="id">The identifier of the entity to update.</param>
+        /// <param name="entity">The updated entity.</param>
+        /// <returns>An IActionResult representing the result of the operation.</returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(Guid id, T entity)
         {
@@ -84,6 +112,11 @@ namespace ServerApp.Controllers
             }
         }
 
+        /// <summary>
+        /// Deletes an entity by its identifier.
+        /// </summary>
+        /// <param name="id">The identifier of the entity to delete.</param>
+        /// <returns>An IActionResult representing the result of the operation.</returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
