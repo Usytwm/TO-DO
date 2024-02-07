@@ -10,7 +10,7 @@ public class MyDbContext : DbContext
     public DbSet<TaskModel> Tareas { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<TaskModel>().HasKey(t => t.TaskId);
+        modelBuilder.Entity<TaskModel>().HasKey(t => t.Id);
         modelBuilder.Entity<TaskModel>().ToTable("Tareas");
         // Configuraciones del modelo aquí
     }
