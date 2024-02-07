@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -5,6 +6,12 @@ var config = new ConfigurationBuilder()
     .SetBasePath(Directory.GetCurrentDirectory())
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
     .Build();
+
+builder.Services.AddDbContext<MyDbContext>(options =>
+    {
+        options.UseMySql(config.GetConnectionString("MySqlConnection"),
+            ServerVersion.AutoDetect(config.GetConnectionString("MySqlConnection")));
+    });
 
 // Agregar servicios al contenedor.
 builder.Services.AddControllers();
