@@ -42,7 +42,7 @@ export const CardTodo = () => {
     addTodo({
       description: taskDescription,
       completed: false,
-      // creationDate: new Date(),
+      creationDate: new Date(),
     });
 
     console.log("Nueva tarea agregada:", taskDescription);
@@ -115,7 +115,7 @@ export const CardTodo = () => {
             onSelectionChange={(key) => setSelected(key.toString())}
           >
             <Tab key="all" title="Todas">
-              <Card className="min-w-[600px] min-h-[200px]">
+              <Card className="min-w-[470px] min-h-[300px]">
                 <CardHeader>
                   <div className="flex flex-col">
                     <p className="text-md">Todas las Tareas</p>
@@ -128,7 +128,7 @@ export const CardTodo = () => {
               </Card>
             </Tab>
             <Tab key="Active" title="Activas">
-              <Card className="min-w-[600px] min-h-[200px]">
+              <Card className="min-w-[470px] min-h-[300px]">
                 <CardHeader>
                   <div className="flex flex-col">
                     <p className="text-md">Tareas Activas</p>
@@ -141,7 +141,7 @@ export const CardTodo = () => {
               </Card>
             </Tab>
             <Tab key="Completed" title="Completadas">
-              <Card className="min-w-[600px] min-h-[200px]">
+              <Card className="min-w-[470px] min-h-[300px]">
                 <CardHeader>
                   <div className="flex flex-col">
                     <p className="text-md">Tareas Completadas</p>

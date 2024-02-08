@@ -22,17 +22,11 @@ public class TaskModel : IEntity
     /// </summary>
     public bool Completed { get; set; } = false;
 
-    [NotMapped]
-    private DateTime? _creationDate;
 
     /// <summary>
     /// Gets or sets the date and time when the task was created.
     /// </summary>
-    public DateTime? CreationDate
-    {
-        get => _creationDate ?? DateTime.Now;
-        set => _creationDate = value;
-    }
+    public DateTime? CreationDate { get; set; }
 
     /// <summary>
     /// Gets or sets the date and time when the task was completed (can be null if not yet completed).
