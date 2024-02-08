@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "d:\\Projects\\TODO\\TO-DO\\ServerApp\\ServerApp.csproj": {}
+    "D:\\Projects\\TODO\\TO-DO\\ServerApp\\ServerApp.csproj": {}
   },
   "projects": {
-    "d:\\Projects\\TODO\\TO-DO\\ServerApp\\ServerApp.csproj": {
+    "D:\\Projects\\TODO\\TO-DO\\ServerApp\\ServerApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\Projects\\TODO\\TO-DO\\ServerApp\\ServerApp.csproj",
+        "projectUniqueName": "D:\\Projects\\TODO\\TO-DO\\ServerApp\\ServerApp.csproj",
         "projectName": "ServerApp",
-        "projectPath": "d:\\Projects\\TODO\\TO-DO\\ServerApp\\ServerApp.csproj",
+        "projectPath": "D:\\Projects\\TODO\\TO-DO\\ServerApp\\ServerApp.csproj",
         "packagesPath": "C:\\Users\\gisam\\.nuget\\packages\\",
-        "outputPath": "d:\\Projects\\TODO\\TO-DO\\ServerApp\\obj\\",
+        "outputPath": "D:\\Projects\\TODO\\TO-DO\\ServerApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\gisam\\AppData\\Roaming\\NuGet\\NuGet.Config"
