@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Todo } from "../interfaces/interfaces";
-import { TodoContext } from "../context/TodoContext";
+
 import { Checkbox, Link, Chip, cn, Modal, Tooltip } from "@nextui-org/react";
 import {
   ModalContent,
@@ -12,6 +12,7 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import { FaEdit, FaTrash } from "react-icons/fa"; // Importar iconos
+import { useTodos } from "../hooks/useTodos";
 
 interface props {
   todo: Todo;
@@ -26,7 +27,7 @@ interface props {
 }
 
 export const TodoItem = ({ todo, statusColor }: props) => {
-  const { toggleTodo, removeTodo, updateTodo } = useContext(TodoContext);
+  const { toggleTodo, removeTodo, updateTodo } = useTodos();
   const [editedDescription, setEditedDescription] = useState(todo.description);
   const deleteModal = useDisclosure();
   const editModal = useDisclosure();
@@ -69,17 +70,21 @@ export const TodoItem = ({ todo, statusColor }: props) => {
   };
 
   const handleToggle = () => {
-    updateTodo(todo.id, { ...todo, completed: !todo.completed });
-    toggleTodo(todo.id);
+    updateTodo(todo.id!, {
+      ...todo,
+      completed: !todo.completed,
+      completionDate: !todo.completed ? new Date() : undefined,
+    });
+    toggleTodo(todo.id!);
   };
 
   const handleDeleteConfirm = () => {
-    removeTodo(todo.id);
+    removeTodo(todo.id!);
     deleteModal.onClose();
   };
 
   const handleEditConfirm = () => {
-    updateTodo(todo.id, { ...todo, description: editedDescription });
+    updateTodo(todo.id!, { ...todo, description: editedDescription });
     editModal.onClose();
   };
 
@@ -88,7 +93,7 @@ export const TodoItem = ({ todo, statusColor }: props) => {
       className="flex flex-col max-w-md w-full bg-content1 m-0 hover:bg-content2 justify-start cursor-pointer rounded-lg gap-2 p-4 border-2 border-transparent data-[selected=true]:border-primary"
       style={{ opacity: todo.completed ? 0.5 : 1 }}
     >
-      <div className="flex justify-between items-center w-full">
+      <div className="flex justify-between items-center w-full flex-wrap">
         <Checkbox
           aria-label={todo.description}
           checked={todo.completed}
@@ -101,13 +106,23 @@ export const TodoItem = ({ todo, statusColor }: props) => {
           }}
           className="flex-grow"
         >
-          <div className="w-full flex justify-between items-center gap-2">
-            <Tooltip content="Creacion:">
-              <div className="flex items-center gap-2">
+          <div className="flex justify-between items-center gap-2 w-full">
+            <Tooltip
+              content={`Creación: ${
+                todo.creationDate
+                  ? `${new Date(
+                      todo.creationDate
+                    ).toLocaleDateString()} ${new Date(
+                      todo.creationDate
+                    ).toLocaleTimeString()}`
+                  : "No disponible"
+              }`}
+            >
+              <div className="flex items-center gap-2 overflow-hidden">
                 <span>{todo.description}</span>
               </div>
             </Tooltip>
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1 flex-shrink">
               <Chip color={statusColor} size="sm" variant="flat">
                 {todo.completed ? "Completada" : "Pendiente"}
               </Chip>

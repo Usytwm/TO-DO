@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace ServerApp.Models;
 
 /// <summary>
@@ -18,12 +20,19 @@ public class TaskModel : IEntity
     /// <summary>
     /// Gets or sets a boolean indicator showing whether the task has been completed or not.
     /// </summary>
-    public bool Completed { get; set; }
+    public bool Completed { get; set; } = false;
+
+    [NotMapped]
+    private DateTime? _creationDate;
 
     /// <summary>
     /// Gets or sets the date and time when the task was created.
     /// </summary>
-    public DateTime? CreationDate { get; set; }
+    public DateTime? CreationDate
+    {
+        get => _creationDate ?? DateTime.Now;
+        set => _creationDate = value;
+    }
 
     /// <summary>
     /// Gets or sets the date and time when the task was completed (can be null if not yet completed).

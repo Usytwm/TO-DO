@@ -1,7 +1,9 @@
 export interface Todo {
-  id: string;
+  id?: string;
   description: string;
   completed: boolean;
+  creationDate?: Date;
+  completionDate?: Date;
 }
 
 export interface TodoState {
@@ -9,4 +11,7 @@ export interface TodoState {
   todos: Todo[];
   completed: number;
   pending: number;
+}
+export interface searchProps {
+  searchTerm: string;
 }
