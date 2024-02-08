@@ -27,17 +27,6 @@ export const TodoReducer = (
         todoCount: state.todoCount + 1,
         pending: state.pending + 1,
       };
-    // case "TOGGLE_TODO":
-    //   return {
-    //     ...state,
-    //     todos: state.todos.map((todo) =>
-    //       todo.id === action.payload.id
-    //         ? { ...todo, completed: !todo.completed }
-    //         : todo
-    //     ),
-    //     completed: state.completed + 1,
-    //     pending: state.pending - 1,
-    //   };
     case "TOGGLE_TODO":
       const updatedTodos = state.todos.map((todo) =>
         todo.id === action.payload.id
