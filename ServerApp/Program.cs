@@ -16,6 +16,18 @@ builder.Services.AddDbContext<MyDbContext>(options =>
         ServerVersion.AutoDetect(config.GetConnectionString("MySqlConnection")));
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        builder =>
+        {
+            builder.WithOrigins("http://localhost:3000")
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials();
+        });
+});
+
 // Add services to the container
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -44,6 +56,8 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.UseCors("AllowSpecificOrigin");
 
 app.UseRouting();
 
