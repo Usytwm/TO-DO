@@ -238,6 +238,3 @@ _Pvt_Extensions
 # Ignora todos los archivos de la carpeta
 ServerApp/Migrations/*
 ServerApp/wwwroot/*
-!ServerApp/Migrations/.gitkeep
-!ServerApp/ImagesRepository/.gitkeep
-!ServerApp/ImagesRepository/photo*

@@ -45,8 +45,6 @@ export const CardTodo = () => {
       creationDate: new Date(),
     });
 
-    console.log("Nueva tarea agregada:", taskDescription);
-
     // Limpiar el campo de entrada después de agregar la tarea
     setTaskDescription("");
 
