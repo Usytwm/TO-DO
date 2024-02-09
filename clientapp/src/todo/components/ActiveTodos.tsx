@@ -17,7 +17,7 @@ export const ActiveTodos = ({ searchTerm }: searchProps) => {
     // Asignar una fecha por defecto si creationDate es undefined
     const dateA = a.creationDate ? new Date(a.creationDate).getTime() : 0; // Fecha muy antigua
     const dateB = b.creationDate ? new Date(b.creationDate).getTime() : 0; // Fecha muy antigua
-    return dateB - dateA;
+    return dateA - dateB;
   };
 
   filteredTodos.sort(sortByCreationDate);

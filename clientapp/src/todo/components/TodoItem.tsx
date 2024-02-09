@@ -93,22 +93,10 @@ export const TodoItem = ({ todo, statusColor }: props) => {
       className="flex flex-col max-w-md w-full bg-content1 m-0 hover:bg-content2 justify-start cursor-pointer rounded-lg gap-2 p-4 border-2 border-transparent data-[selected=true]:border-primary"
       style={{ opacity: todo.completed ? 0.5 : 1 }}
     >
-      <div className="flex justify-between items-center w-full flex-wrap">
-        <Checkbox
-          aria-label={todo.description}
-          checked={todo.completed}
-          isDisabled={todo.completed}
-          value={todo.id}
-          onChange={() => {
-            if (!todo.completed) {
-              handleToggle(); // Cambiar estado solo si no está completada
-            }
-          }}
-          className="flex-grow"
-        >
-          <div className="flex justify-between items-center gap-2 w-full">
-            <Tooltip
-              content={`Creación: ${
+      <Tooltip
+        content={
+          !todo.completed
+            ? `Creación: ${
                 todo.creationDate
                   ? `${new Date(
                       todo.creationDate
@@ -116,30 +104,55 @@ export const TodoItem = ({ todo, statusColor }: props) => {
                       todo.creationDate
                     ).toLocaleTimeString()}`
                   : "No disponible"
-              }`}
-            >
+              }`
+            : `Completada: ${
+                todo.completionDate
+                  ? `${new Date(
+                      todo.completionDate
+                    ).toLocaleDateString()} ${new Date(
+                      todo.completionDate
+                    ).toLocaleTimeString()}`
+                  : "No disponible"
+              }`
+        }
+      >
+        <div className="flex justify-between items-center w-full flex-wrap">
+          <Checkbox
+            aria-label={todo.description}
+            checked={todo.completed}
+            isDisabled={todo.completed}
+            value={todo.id}
+            onChange={() => {
+              if (!todo.completed) {
+                handleToggle(); // Cambiar estado solo si no está completada
+              }
+            }}
+            className="flex-grow"
+          >
+            <div className="flex justify-between items-center gap-2 w-full">
               <div className="flex items-center gap-2 overflow-hidden">
                 <span>{todo.description}</span>
               </div>
-            </Tooltip>
-            <div className="flex items-center gap-1 flex-shrink">
-              <Chip color={statusColor} size="sm" variant="flat">
-                {todo.completed ? "Completada" : "Pendiente"}
-              </Chip>
+
+              <div className="flex items-center gap-1 flex-shrink">
+                <Chip color={statusColor} size="sm" variant="flat">
+                  {todo.completed ? "Completada" : "Pendiente"}
+                </Chip>
+              </div>
             </div>
-          </div>
-        </Checkbox>
-        <div className="flex gap-1">
-          {!todo.completed && (
-            <Button onPress={() => handleEditOpen("sm")}>
-              <FaEdit />
+          </Checkbox>
+          <div className="flex gap-1">
+            {!todo.completed && (
+              <Button onPress={() => handleEditOpen("sm")}>
+                <FaEdit />
+              </Button>
+            )}
+            <Button onClick={() => handleDeleteOpen("sm")}>
+              <FaTrash />
             </Button>
-          )}
-          <Button onClick={() => handleDeleteOpen("sm")}>
-            <FaTrash />
-          </Button>
+          </div>
         </div>
-      </div>
+      </Tooltip>
 
       {/* Modal de confirmación de eliminación */}
       <Modal

@@ -19,7 +19,7 @@ export const TodoList = ({ searchTerm }: searchProps) => {
     const dateA = a.creationDate ? new Date(a.creationDate).getTime() : 0; // Fecha muy antigua
     const dateB = b.creationDate ? new Date(b.creationDate).getTime() : 0; // Fecha muy antigua
 
-    return dateB - dateA;
+    return dateA - dateB;
   };
   const sortByCompleteDate = (a: Todo, b: Todo) => {
     // Asignar una fecha por defecto si creationDate es undefined
